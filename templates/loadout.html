@@ -1,0 +1,49 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="equipment-box col-md-6 col-sm-6">
+        <h2>Weapons:</h2>
+        <div class="row">
+            {% for item in items %}
+            {% if loop.index0 < 3 %}
+            <div class="col-md-12 col-sm-12 weapon inventory-item">
+                <div class="col-md-2 col-sm-2">
+                    <img src="https://bungie.net{{item.displayProperties['icon']}}" title="{{item.displayProperties['name']}}">
+                </div>
+                <div class="col-md-8 col-sm-8 loadouttext">
+                    <b>{{item.displayProperties['name']}}</b><br>
+                    <i>{{item.displayProperties['description']}}</i>
+                </div>
+            </div>
+            {% endif %}
+            {% if loop.index0 == 3 %}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    <div class="equipment-box col-md-6 col-sm-6">
+        <h2>Armor:</h2>
+        <div class="row">
+            {% for item in items %}
+            {% if loop.index0 > 2 %}
+            <div class="col-md-12 col-sm-12 armor inventory-item">
+                <div class="col-md-2 col-sm-2">
+                    <img src="https://bungie.net{{item.displayProperties['icon']}}" title="{{item.displayProperties['name']}}">
+                </div>
+                <div class="col-md-8 col-sm-8 loadouttext">
+                    <b>{{item.displayProperties['name']}}</b><br>
+                    <i>{{item.displayProperties['description']}}</i>
+                </div>
+            </div>
+            {% endif %}
+            {% if loop.last %}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+</div>
+{% endblock %}

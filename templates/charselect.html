@@ -1,0 +1,27 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<h1>Select a Character:</h1>
+
+<div class="row">
+    {% for char in characters %}
+    <div class="col-md-4">
+        <div class="character-box" style="height:96px; width:474px;">
+            <form action="/builder/items" method="post">
+                <input type="hidden" name="charid" value="{{char.charid}}">
+                <input type="hidden" name="classname" value="{{char.classname}}">
+                <button onclick="toggleLoading()">
+                <img src="https://www.bungie.net{{char.emblemBackgroundPath}}">
+                <div class="lightlevel">{{char.light}}</div>
+                <div class="classname">{{char.classname}}</div>
+                <div class="racename">{{char.racename}}</div>
+                <div class="gendername">{{char.gendername}}</div>
+                    </button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

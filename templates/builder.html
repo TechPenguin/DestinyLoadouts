@@ -1,0 +1,175 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+<script src="{{ url_for('static', filename='bootstrap-select.js') }}"></script>
+
+<div class="container">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <form action="/loadout/save" method="post">
+                <div class="form-group ">
+                    <input class="form-control" id="characterId" name="characterId" type="hidden" value="{{characterId}}"/>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label" for="primaryWeapon">Primary Weapon</label>
+                    <select class="form-control selectpicker" id="primaryWeapon" name="primaryWeapon" data-live-search="true">
+                        {% for item in primaryWeapons %}
+                        <option value="{'itemHash': {{ item.itemHash }},'itemInstanceId': {{ item.itemInstanceId }}}"
+                                data-thumbnail="https://bungie.net{{item.displayProperties['icon']}}"
+                                data-content="<div><b>{{ item.stats['primaryStat']['value'] }} - {{item.displayProperties['name']}}</b><br>
+                                Perks (Active | Available): <br>
+                                {% for socketset in item.sockets%}
+                                   {{ socketset.activeSocket.displayProperties['name'] }} |
+                                   {% for socket in socketset.reusableSockets %}
+                                   {{ socket.displayProperties['name'] }} {% if not loop.last %}- {% endif %} {% endfor %} <br>
+                                {% endfor %}</div>
+                                " title="{{ item.stats['primaryStat']['value'] }} - {{item.displayProperties['name']}}">
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label" for="secondaryWeapon">Energy Weapon</label>
+                    <select class="form-control selectpicker" id="secondaryWeapon" name="secondaryWeapon" data-live-search="true">
+                        {% for item in secondaryWeapons %}
+                        <option value="{'itemHash': {{ item.itemHash }},'itemInstanceId': {{ item.itemInstanceId }}}"
+                                data-thumbnail="https://bungie.net{{item.displayProperties['icon']}}"
+                                data-content="<div><b>{{ item.stats['primaryStat']['value'] }} - {{item.displayProperties['name']}}</b><br>
+                                Perks (Active | Available): <br>
+                                {% for socketset in item.sockets%}
+                                   {{ socketset.activeSocket.displayProperties['name'] }} |
+                                   {% for socket in socketset.reusableSockets %}
+                                   {{ socket.displayProperties['name'] }} {% if not loop.last %}- {% endif %} {% endfor %} <br>
+                                {% endfor %}</div>
+                                " title="{{ item.stats['primaryStat']['value'] }} - {{item.displayProperties['name']}}">
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label" for="heavyWeapon">Heavy Weapon</label>
+                    <select class="form-control selectpicker" id="heavyWeapon" name="heavyWeapon" data-live-search="true">
+                        {% for item in heavyWeapons %}
+                        <option value="{'itemHash': {{ item.itemHash }},'itemInstanceId': {{ item.itemInstanceId }}}"
+                                data-thumbnail="https://bungie.net{{item.displayProperties['icon']}}"
+                                data-content="<div><b>{{ item.stats['primaryStat']['value'] }} - {{item.displayProperties['name']}}</b><br>
+                                Perks (Active | Available): <br>
+                                {% for socketset in item.sockets%}
+                                   {{ socketset.activeSocket.displayProperties['name'] }} |
+                                   {% for socket in socketset.reusableSockets %}
+                                   {{ socket.displayProperties['name'] }} {% if not loop.last %}- {% endif %} {% endfor %} <br>
+                                {% endfor %}</div>
+                                " title="{{ item.stats['primaryStat']['value'] }} - {{item.displayProperties['name']}}">
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                                <div class="form-group ">
+                    <label class="control-label" for="helmetArmor">Helmet Armor</label>
+                    <select class="form-control selectpicker" id="helmetArmor" name="helmetArmor" data-live-search="true">
+                        {% for item in helmetArmor %}
+                        <option value="{'itemHash': {{ item.itemHash }},'itemInstanceId': {{ item.itemInstanceId }}}"
+                                data-thumbnail="https://bungie.net{{item.displayProperties['icon']}}"
+                                data-content="<div><b>{{ item.stats['primaryStat']['value'] }} - {{item.displayProperties['name']}}</b><br>
+                                Perks (Active | Available): <br>
+                                {% for socketset in item.sockets%}
+                                   {{ socketset.activeSocket.displayProperties['name'] }} |
+                                   {% for socket in socketset.reusableSockets %}
+                                   {{ socket.displayProperties['name'] }} {% if not loop.last %}- {% endif %} {% endfor %} <br>
+                                {% endfor %}</div>
+                                " title="{{ item.stats['primaryStat']['value'] }} - {{item.displayProperties['name']}}">
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label" for="armsArmor">Arms Armor</label>
+                    <select class="form-control selectpicker" id="armsArmor" name="armsArmor" data-live-search="true">
+                        {% for item in armsArmor %}
+                        <option value="{'itemHash': {{ item.itemHash }},'itemInstanceId': {{ item.itemInstanceId }}}"
+                                data-thumbnail="https://bungie.net{{item.displayProperties['icon']}}"
+                                data-content="<div><b>{{ item.stats['primaryStat']['value'] }} - {{item.displayProperties['name']}}</b><br>
+                                Perks (Active | Available): <br>
+                                {% for socketset in item.sockets%}
+                                   {{ socketset.activeSocket.displayProperties['name'] }} |
+                                   {% for socket in socketset.reusableSockets %}
+                                   {{ socket.displayProperties['name'] }} {% if not loop.last %}- {% endif %} {% endfor %} <br>
+                                {% endfor %}</div>
+                                " title="{{ item.stats['primaryStat']['value'] }} - {{item.displayProperties['name']}}">
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label" for="chestArmor">Chest Armor</label>
+                    <select class="form-control selectpicker" id="chestArmor" name="chestArmor" data-live-search="true">
+                        {% for item in chestArmor %}
+                        <option value="{'itemHash': {{ item.itemHash }},'itemInstanceId': {{ item.itemInstanceId }}}"
+                                data-thumbnail="https://bungie.net{{item.displayProperties['icon']}}"
+                                data-content="<div><b>{{ item.stats['primaryStat']['value'] }} - {{item.displayProperties['name']}}</b><br>
+                                Perks (Active | Available): <br>
+                                {% for socketset in item.sockets%}
+                                   {{ socketset.activeSocket.displayProperties['name'] }} |
+                                   {% for socket in socketset.reusableSockets %}
+                                   {{ socket.displayProperties['name'] }} {% if not loop.last %}- {% endif %} {% endfor %} <br>
+                                {% endfor %}</div>
+                                " title="{{ item.stats['primaryStat']['value'] }} - {{item.displayProperties['name']}}">
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label" for="legArmor">Leg Armor</label>
+                    <select class="form-control selectpicker" id="legArmor" name="legArmor" data-live-search="true">
+                        {% for item in legArmor %}
+                        <option value="{'itemHash': {{ item.itemHash }},'itemInstanceId': {{ item.itemInstanceId }}}"
+                                data-thumbnail="https://bungie.net{{item.displayProperties['icon']}}"
+                                data-content="<div><b>{{ item.stats['primaryStat']['value'] }} - {{item.displayProperties['name']}}</b><br>
+                                Perks (Active | Available): <br>
+                                {% for socketset in item.sockets%}
+                                   {{ socketset.activeSocket.displayProperties['name'] }} |
+                                   {% for socket in socketset.reusableSockets %}
+                                   {{ socket.displayProperties['name'] }} {% if not loop.last %}- {% endif %} {% endfor %} <br>
+                                {% endfor %}</div>
+                                " title="{{ item.stats['primaryStat']['value'] }} - {{item.displayProperties['name']}}">
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label" for="classArmor">Class Armor</label>
+                    <select class="form-control selectpicker" id="classArmor" name="classArmor" data-live-search="true">
+                        {% for item in classArmor %}
+                        <option value="{'itemHash': {{ item.itemHash }},'itemInstanceId': {{ item.itemInstanceId }}}"
+                                data-thumbnail="https://bungie.net{{item.displayProperties['icon']}}"
+                                data-content="<div><b>{{ item.stats['primaryStat']['value'] }} - {{item.displayProperties['name']}}</b><br>
+                                Perks (Active | Available): <br>
+                                {% for socketset in item.sockets%}
+                                   {{ socketset.activeSocket.displayProperties['name'] }} |
+                                   {% for socket in socketset.reusableSockets %}
+                                   {{ socket.displayProperties['name'] }} {% if not loop.last %}- {% endif %} {% endfor %} <br>
+                                {% endfor %}</div>
+                                " title="{{ item.stats['primaryStat']['value'] }} - {{item.displayProperties['name']}}">
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <button class="btn btn-primary " name="submit" type="submit">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

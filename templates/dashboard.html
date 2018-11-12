@@ -1,0 +1,80 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<style>
+    .table-icon {
+    height: 50%;
+    }
+    .item .table-icon {
+    height: 30%;
+    }
+</style>
+
+<table class="table table-responsive-md btn-table">
+
+    <thead>
+    <tr>
+        <th>#</th>
+        <th><img class="table-icon" src="{{ url_for('static', filename='primary.png') }}" title="Primary Weapon"></th>
+        <th><img class="table-icon" src="{{ url_for('static', filename='energy.png') }}" title="Energy Weapon"></th>
+        <th><img class="table-icon" src="{{ url_for('static', filename='heavy.png') }}" title="Heavy Weapon"></th>
+        <th><img class="table-icon" src="{{ url_for('static', filename='head.png') }}" title="Helmet"></th>
+        <th><img class="table-icon" src="{{ url_for('static', filename='arms.png') }}" title="Gauntlets"></th>
+        <th><img class="table-icon" src="{{ url_for('static', filename='chest.png') }}" title="Chest"></th>
+        <th><img class="table-icon" src="{{ url_for('static', filename='legs.png') }}" title="Legs"></th>
+        <th><img class="table-icon" src="{{ url_for('static', filename='classitems.png') }}" title="Class Item"></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for loadout in loadouts  %}
+    <tr>
+        <th scope="row">{{ loadout.id }}</th>
+        {% for item in loadout.loadout|getjson %}
+        {% if loop.index0 < 8 %}
+        <td><img class="item table-icon" src="https://bungie.net{{item['displayProperties']['icon']}}" alt="{{item['displayProperties']['name']}}" title="{{item['displayProperties']['name']}}"></td>
+        {% endif %}
+        {% endfor %}
+        <td>
+            <form action="/loadout/view" method="POST">
+                <input type="hidden" name="loadoutid" value="{{loadout.id}}">
+                <button class="btn btn-indigo btn-sm m-0">View</button>
+            </form>
+        </td>
+        <td>
+            <form action="/loadout/edit" method="POST">
+                <input type="hidden" name="loadoutid" value="{{loadout.id}}">
+                <button type="button" class="btn btn-indigo btn-sm m-0">Edit</button>
+            </form>
+        </td>
+        <td>
+            <form action="/loadout/equip" method="POST">
+                <input type="hidden" name="loadoutid" value="{{loadout.id}}" onclick="toggleLoading()">
+                <button class="btn btn-indigo btn-sm m-0">Equip</button>
+            </form>
+        </td>
+        <td>
+            <form action="/loadout/delete" method="POST">
+                <input type="hidden" name="loadoutid" value="{{loadout.id}}">
+                <button class="btn btn-indigo btn-sm m-0">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
+
+{% if loadouts|length == 0 %}
+<center>
+<h2>You haven't made any Loadouts yet.
+    <button>
+        <a href="/builder">Make some here</a>
+    </button>
+</h2>
+</center>
+{% endif %}
+{% endblock %}

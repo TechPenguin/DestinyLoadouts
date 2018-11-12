@@ -1,0 +1,23 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+
+<div>
+    <h1>Welcome to the Test Page</h1>
+    <p>allows to enter endpoint and get results</p>
+
+
+    <p> Result: {{response}}</p>>
+
+    <form action="/test" method="post">
+        <input type="text" name="req_str">
+        <input type="submit" name="Submit">
+    </form>
+
+
+
+
+</div>
+
+{% endblock %}

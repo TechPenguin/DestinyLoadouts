@@ -1,0 +1,78 @@
+/*Main Elements*/
+
+body {
+ background-color: #363636;
+ color: #999999;
+}
+
+.nav > form > button {
+background: #222222;
+border: #222222;
+}
+
+/* Character Banner */
+.character-box {
+    position: relative;
+    border-bottom: 2px solid #888;
+    height: 46px;
+    max-width: 230px;
+    cursor: pointer;
+}
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    filter: brightness(70%);
+    background-size: cover;
+    background-position: left center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+/* Character Stats */
+.lightlevel {
+    font-size: 30px;
+    color: #fff900;
+    position: absolute;
+    top: 8px;
+    right: -200px;
+}
+.classname {
+    font-size: 30px;
+    color: #ffffff;
+    position: absolute;
+    top: 8px;
+    right: -25px;
+}
+.racename {
+    font-size: 14px;
+    color: #d6d6d6;
+    position: absolute;
+    top: 65px;
+    right: 16px;
+}
+.gendername {
+    font-size: 14px;
+    color: #d6d6d6;
+    position: absolute;
+    top: 65px;
+    right: -60px;
+}
+
+/* Loadout View*/
+.loadouttext {
+    padding: 0px 0px 20px 45px;
+}
+.weapon {
+    padding:20px;
+}
+.armor {
+    padding:20px;
+}
+
+/* Loading GIF */
+#Loading {
+    position: absolute;
+    top: 25%;
+    left: 45%;
+}
+
