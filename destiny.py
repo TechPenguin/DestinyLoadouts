@@ -98,7 +98,8 @@ they are named for and map to the functions outlined in the official docs at htt
 
 
 def getProfile(session,membershiptype,membershipid,components):
-    req_str = DESTINY_URL + '{}/Profile/{}?components={}'.format(membershiptype,membershipid,components)
+    req_str = DESTINY_URL + '{}/Profile/{}/'.format(membershiptype, membershipid) \
+              + '?components={}'.format(components)
     response = session.get(req_str)
     profile = json.loads(response.content)
     if profile['ErrorCode'] != 1:
@@ -108,7 +109,7 @@ def getProfile(session,membershiptype,membershipid,components):
 
 
 def getCharacter(session,membershiptype,membershipid,characterid, components):
-    req_str = DESTINY_URL + '{}/Profile/{}/Character/{}'.format(membershiptype,membershipid,characterid) \
+    req_str = DESTINY_URL + '{}/Profile/{}/Character/{}'.format(membershiptype, membershipid, characterid) \
               +'?components={}'.format(components)
     response = session.get(req_str)
     character = json.loads(response.content)
@@ -184,9 +185,6 @@ These functions provide further assistance in implementing the core functionalit
 '''
 
 
-#TODO: This is the call that fails to authenticate
-    # See Auth is partially broken in Prod
-    # Without Read non equipped inventory CharacterInventories and ProfileInventories are empty
 def buildInventory(session, membershiptype, membershipid):
     response = getProfile(session, membershiptype, membershipid, COMPONENTS['ProfileInventories'] + ',' +
                           COMPONENTS['CharacterInventories'] + ',' + COMPONENTS['CharacterEquipment'] + ',' +

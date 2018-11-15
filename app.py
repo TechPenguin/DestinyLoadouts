@@ -16,12 +16,6 @@ import logging
 
 #OBE - Will not be able to rebuild in time
 
-#TODO: Auth is ~~completely~~ partially broken in prod >
-    # can Equip/Transfer but not process needs to access inventory >
-    #  Also would require that the user have already built Loadouts >
-    # Workaround: Enable Show my non equipped Inventory on Bungie > Settings > Privacy
-    # This may be a result of the use of Session to rebuild to oauth_session
-
 #TODO: add sockets to loadout view >
     # Requires rework of Saved data structure to include Sockets info
     # Saved loadouts contain un-API-filled Items (only Manifest Data)
