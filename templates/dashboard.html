@@ -45,12 +45,6 @@
             </form>
         </td>
         <td>
-            <form action="/loadout/edit" method="POST">
-                <input type="hidden" name="loadoutid" value="{{loadout.id}}">
-                <button type="button" class="btn btn-indigo btn-sm m-0">Edit</button>
-            </form>
-        </td>
-        <td>
             <form action="/loadout/equip" method="POST">
                 <input type="hidden" name="loadoutid" value="{{loadout.id}}" onclick="toggleLoading()">
                 <button class="btn btn-indigo btn-sm m-0">Equip</button>

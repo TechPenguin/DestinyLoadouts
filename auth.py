@@ -30,7 +30,8 @@ def save_session(tokenResponse):
     req = 'https://www.bungie.net/Platform/User/GetMembershipsForCurrentUser/'
     res = oauth_session.get(req)
     session['affinityToken'] = res.cookies.get('Q6dA7jjmn3WPGkYAhga2oHvTT+8b849OPtfBrw@@')
-    session['destinyMembershipId'] = res.json()['Response']['destinyMemberships'][0]['membershipId'] #TODO: this should be a choice for users with multiple platforms
+    # TODO: this should be a choice for users with multiple platforms
+    session['destinyMembershipId'] = res.json()['Response']['destinyMemberships'][0]['membershipId']
     session['membershipType'] = res.json()['Response']['destinyMemberships'][0]['membershipType']
     session['displayName'] = res.json()['Response']['destinyMemberships'][0]['displayName']
     session['access_token'] = tokenResponse['access_token']

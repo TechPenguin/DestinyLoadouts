@@ -30,7 +30,7 @@ import logging
 app = Flask(__name__)
 Bootstrap(app)
 app.config.from_object('config-dev')
-# app.config.from_object('config-prod')
+#app.config.from_object('config-prod')
 db = SQLAlchemy(app)
 import models
 app.config['SESSION_SQLALCHEMY'] = db
